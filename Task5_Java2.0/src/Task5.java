@@ -14,7 +14,6 @@ public class Task5 {
             this.two = two;
             this.operation = operation;
         }
-        grf
         double plus(){
             return one + two;
         }
@@ -28,15 +27,35 @@ public class Task5 {
             return one / two;
         }
     }
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Введите первое число ");
-        double one = Double.parseDouble(reader.readLine());
+        double one = 0;
+        try {
+            one = Double.parseDouble(reader.readLine());
+        }
+        catch (NumberFormatException  e) {
+            System.out.println("Не правильный формат числа");
+        }
         System.out.print("Введите второе число ");
-        double two = Double.parseDouble(reader.readLine());
-        System.out.print("Введите знак сложения, вычитания, произведения или деления  ");
+        double two = 0;
+        try {
+            two = Double.parseDouble(reader.readLine());
+        }
+        catch (NumberFormatException  e) {
+            System.out.println("Не правильный формат числа");
+        }
+        System.out.print("Введите знак сложения, вычитания, произведения или деления");
         String operation = reader.readLine();
-        Calculator calculator = new Calculator(one , two , operation);
+        if (operation != "+|-|*|/") {
+            try {
+                throw new IOException();
+            }
+            catch (IOException e) {
+                System.out.println("Вы можете ввести только знак сложения, вычитания, произведения или деления");
+            }
+        }
+        Calculator calculator = new Calculator(one, two, operation);
 
         switch (operation){
             case ("+"):
