@@ -6,7 +6,7 @@ public class Task7 {
 
     static class Calculator {
         double one;
-        double two;
+        static double two;
         String operation;
 
         Calculator(double one , double two , String operation){
@@ -23,7 +23,8 @@ public class Task7 {
         double proizv(){
             return one * two;
         }
-        double delenie(){
+        double delenie() throws ZeroException {
+            if (two == 0) throw new ZeroException("Ошибка! На ноль делить нельзя");
             return one / two;
         }
     }
@@ -57,9 +58,6 @@ public class Task7 {
                 System.out.printf("Вычитание чисел  = %.2f", calculator.minus());
                 break;
             case ("/"):
-                if (two == 0) {
-                    throw new ZeroException("Ошибка! На ноль делить нельзя");
-                }
                 System.out.printf("Деление чисел  = %.2f", calculator.delenie());
                 break;
             case ("*"):System.out.printf("Произведение чисел  = %.2f", calculator.proizv());
